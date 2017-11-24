@@ -12,8 +12,23 @@
   //   return eDiv;
   // }
 
+  function isFunction(func) {
+    return typeof(func) === 'function';
+  };
+
+  function isClass(func) {
+    return isFunction(func) && /^class\s/.test(Function.prototype.toString.call(func));
+    //Regex to check if result starts with word 'class'
+  };
+
   function anElement(element, props, children) {
-    if (typeof(element) === 'function') {
+
+    if (isClass(element)) {
+
+      const myElem = new element(props);
+      return myElem.render();
+
+    } else if (isFunction(element)) {
 
       return element();
 
@@ -23,6 +38,15 @@
 
       for (let key in props) {
         const value = props[key];
+
+        // onClick -> ()
+        if (/^on.*$/.test(key)) {
+
+          //Substr to remove the 'on', toLowerCase because Click wouldn't work
+          myElement.addEventListener(key.substr(2).toLowerCase(), value);
+
+        }
+
         key = (key == 'className' ? 'class' : key);
 
         myElement.setAttribute(key, value);
@@ -49,20 +73,30 @@
   };
 
   class MyReact {
+
     // static createElement(type, props, ...children) {
     //   if (type == 'div') {
     //     return div(props, children);
     //   }
     // }
 
-
-
     static createElement(element, props, ...children) {
       return anElement(element, props, children);
     }
-  }
+  };
 
-  window.MyReact = MyReact;
+  class Component {
+
+    constructor(aProp) {
+      this.props = aProp;
+    }
+
+  };
+
+  window.MyReact = {
+    createElement: MyReact.createElement,
+    Component
+  };
 })
 
 ();

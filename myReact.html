@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>MyReact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" />
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   <script src="./libs/react.js"></script>
   <script src="./libs/react-dom.js"></script>
@@ -11,34 +12,76 @@
 
   <script type="text/javascript">
 
-  const myH1 = () => {
-    return MyReact.createElement('h1', {className: 'has-text-primary'}, `Efreitech Rocks!`);
-  };
+  //Event Management in Props
+  class MyH1 extends MyReact.Component {
+    render() {
+      return MyReact.createElement('h1', {className: 'has-text-primary', onClick: () => alert('Halp!')}, `${this.props.school} Rocks!`)
+    }
+  }
 
-  const myH2 = () => {
-    return MyReact.createElement('h3', {className: 'has-text-danger'}, `Code lover.`);
-  };
+  const component = MyReact.createElement(MyH1, {school: 'Efreitech'}, null);
 
-  const cmp1 = MyReact.createElement(myH1, null, null);
-  const cmp2 = MyReact.createElement(myH2, null, null);
-  const mDiv = MyReact.createElement('div', null, `This is a simple div.`);
+  MyReactDOM.render(component, document.getElementById('root'));
 
-  const parent = MyReact.createElement('div', null,
-  cmp1,
-  cmp2,
-  mDiv,
-  `Simple text to tell you see ya!`);
+  //Props Management in Classes
+  // class MyH1 extends MyReact.Component {
+  //   render() {
+  //     return MyReact.createElement('h1', {className: 'has-text-primary'}, `${this.props.school} Rocks!`)
+  //   }
+  // }
+  //
+  // const component = MyReact.createElement(MyH1, {school: 'Efreitech'}, null);
+  //
+  // MyReactDOM.render(component, document.getElementById('root'));
 
+  //Props Management in Functions
+  // const myH1 = ({ school }) => {
+  //   return MyReact.createElement('h1', {className: 'has-text-primary'}, `${school} Rocks!`)
+  // };
+  //
+  // const component = MyReact.createElement(myH1, {school: 'Efreitech'}, null);
+  //
+  // MyReactDOM.render(component, document.getElementById('root'));
 
+  //Class Management
+  // class MyH1 {
+  //   render() {
+  //     return MyReact.createElement('h1', {className: 'has-text-primary'}, `Efreitech Rocks!`);
+  //   }
+  // };
+  //
+  // const component = MyReact.createElement(MyH1, null, null);
+  //
+  // MyReactDOM.render(component, document.getElementById('root'));
+
+  //Different Children Management
+  // const myH1 = () => {
+  //   return MyReact.createElement('h1', {className: 'has-text-primary'}, `Efreitech Rocks!`);
+  // };
+  //
+  // const myH2 = () => {
+  //   return MyReact.createElement('h3', {className: 'has-text-danger'}, `Code lover.`);
+  // };
+  //
+  // const cmp1 = MyReact.createElement(myH1, null, null);
+  // const cmp2 = MyReact.createElement(myH2, null, null);
+  // const mDiv = MyReact.createElement('div', null, `This is a simple div.`);
+  //
+  // const parent = MyReact.createElement('div', null,
+  // cmp1,
+  // cmp2,
+  // mDiv,
+  // `Simple text to tell you see ya!`);
+  //MyReactDOM.render(parent, document.getElementById('root'));
+
+  //Function Management
   // const myDiv = MyReact.createElement('div', {className: 'container', id: 'test'}, `Efreitech Rocks!`);
   //
   // MyReactDOM.render(myDiv, document.getElementById('root'));
-
+  //
   // const component = MyReact.createElement(myH1, null, null);
+  // MyReactDOM.render(component, document.getElementById('root'));
 
-  // MyReactDOM.render(parent, document.getElementById('root'));
-
-  MyReactDOM.render(parent, document.getElementById('root'));
   </script>
 
 </body>
