@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyReact</title>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script src="./libs/react.js"></script>
+  <script src="./libs/react-dom.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/javascript">
+
+  const myH1 = () => {
+    return MyReact.createElement('h1', {className: 'has-text-primary'}, `Efreitech Rocks!`);
+  };
+
+  const myH2 = () => {
+    return MyReact.createElement('h3', {className: 'has-text-danger'}, `Code lover.`);
+  };
+
+  const cmp1 = MyReact.createElement(myH1, null, null);
+  const cmp2 = MyReact.createElement(myH2, null, null);
+  const mDiv = MyReact.createElement('div', null, `This is a simple div.`);
+
+  const parent = MyReact.createElement('div', null,
+  cmp1,
+  cmp2,
+  mDiv,
+  `Simple text to tell you see ya!`);
+
+
+  // const myDiv = MyReact.createElement('div', {className: 'container', id: 'test'}, `Efreitech Rocks!`);
+  //
+  // MyReactDOM.render(myDiv, document.getElementById('root'));
+
+  // const component = MyReact.createElement(myH1, null, null);
+
+  // MyReactDOM.render(parent, document.getElementById('root'));
+
+  MyReactDOM.render(parent, document.getElementById('root'));
+  </script>
+
+</body>
+</html>
