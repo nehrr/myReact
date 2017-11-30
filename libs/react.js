@@ -45,11 +45,12 @@
           //Substr to remove the 'on', toLowerCase because Click wouldn't work
           myElement.addEventListener(key.substr(2).toLowerCase(), value);
 
+        } else {
+
+          key = (key == 'className' ? 'class' : key);
+          myElement.setAttribute(key, value);
+
         }
-
-        key = (key == 'className' ? 'class' : key);
-
-        myElement.setAttribute(key, value);
       }
 
       children.forEach(child => {
@@ -91,12 +92,17 @@
       this.props = aProp;
     }
 
+    setState(object) {
+      //Gets object key and applies value
+      let value = Object.values(object);
+      let key = Object.keys(object);
+      this.state.key = value();
+      console.log(value);
+    }
   };
 
   window.MyReact = {
     createElement: MyReact.createElement,
     Component
   };
-})
-
-();
+})();

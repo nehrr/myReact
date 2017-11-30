@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>MyReact</title>
+      <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+      <script src="./libs/react.js"></script>
+      <script src="./libs/react-dom.js"></script>
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/javascript">
+
+      class Counter extends MyReact.Component {
+
+        constructor(props) {
+          super(props);
+          this.state = {
+            value: 0
+          };
+        }
+
+        add() {
+          this.setState({ value: this.state.value + 1 });
+        }
+
+        minus() {
+          this.setState({ value: this.state.value - 1 });
+        }
+
+        render() {
+          return MyReact.createElement('div', {className: 'container'},
+            MyReact.createElement('h1', {className: 'title has-text-centered'}, `${this.state.value}`),
+            MyReact.createElement('div', {className: 'hero-buttons'},
+            MyReact.createElement('a', { className: 'button is-success', onClick: this.add.bind(this)}, '+'),
+            MyReact.createElement('a', { className: 'button is-danger', onClick: this.minus.bind(this)}, '-')))
+        }
+      }
+
+      const component = MyReact.createElement(Counter, null, null);
+      MyReactDOM.render(component, document.getElementById('root'));
+    </script>
+
+  </body>
+</html>
